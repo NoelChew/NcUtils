@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 
 /**
  * Created by NoelChew on 3/14/16.
@@ -32,5 +33,27 @@ public class ResourceUtil {
 
     public static String getStringFromResourceName(Context context, String resourceName) {
         return context.getString(getResourceId(context, resourceName));
+    }
+
+    public static int getPrimaryColor(Context context) {
+        final TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true);
+        return value.data;
+    }
+
+    public static int getPrimaryColorDark(Context context) {
+        final TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimaryDark, value, true);
+        return value.data;
+    }
+
+    public static int getAccentColor(Context context) {
+        final TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorAccent, value, true);
+        return value.data;
+    }
+
+    public static int getColor(Context context, int colorResourceId) {
+        return ContextCompat.getColor(context, colorResourceId);
     }
 }
