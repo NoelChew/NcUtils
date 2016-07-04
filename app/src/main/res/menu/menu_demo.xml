@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/menu_attachment"
+        android:title="attachment"
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/menu_attachment_image"
+                android:title="Image" />
+            <item
+                android:id="@+id/menu_attachment_video"
+                android:title="Video" />
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/menu_dummy"
+        android:title="dummy"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item
+        android:id="@+id/menu_dummy2"
+        android:title="dummy2"
+        app:showAsAction="ifRoom">
+    </item>
+</menu>
