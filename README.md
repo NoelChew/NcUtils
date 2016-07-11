@@ -1,4 +1,19 @@
 # NcUtils
+Utilities for Android development.
+
+- Image and video picker with Runtime permissions.
+- Google map utilities
+- Shared preference and internal storage utilities
+- Alert dialog utilities
+- and more...
+
+
+# Integration
+-----
+###Gradle
+This library is hosted by jitpack.io.
+
+Root level gradle:
 ```
 allprojects {
  repositories {
@@ -7,6 +22,8 @@ allprojects {
  }
 }
 ```
+
+Application level gradle:
 ```
 dependencies {
     compile 'com.github.noelchew:NcUtils:0.1.1'
