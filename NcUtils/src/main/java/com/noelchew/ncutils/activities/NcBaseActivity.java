@@ -23,7 +23,7 @@ public abstract class NcBaseActivity extends AppCompatActivity {
 
     protected Context mContext;
     private Toolbar toolbar;
-    private ProgressDialog mProgressDialog;
+    protected ProgressDialog mProgressDialog;
     protected Menu menu;
 
     protected PickerUtil pickerUtil;
