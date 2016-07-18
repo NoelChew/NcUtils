@@ -12,8 +12,9 @@ import com.joanzapata.iconify.fonts.MaterialCommunityIcons;
 import com.kbeanie.multipicker.api.entity.ChosenImage;
 import com.kbeanie.multipicker.api.entity.ChosenVideo;
 import com.noelchew.ncutils.AlertDialogUtil;
+import com.noelchew.ncutils.NcAppRatingUtil;
 import com.noelchew.ncutils.PickerUtil;
-import com.noelchew.ncutils.activities.NcBaseActivity;
+import com.noelchew.ncutils.activities.MainNcBaseActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * Created by noelchew on 7/4/16.
  */
-public class DemoActivity extends NcBaseActivity {
+public class DemoActivity extends MainNcBaseActivity {
 
     @Override
     protected int getLayoutResource() {
@@ -61,8 +62,8 @@ public class DemoActivity extends NcBaseActivity {
                 new IconDrawable(this, MaterialCommunityIcons.mdi_video)
                         .colorRes(R.color.icon_color)
                         .actionBarSize());
-        menu.findItem(R.id.menu_dummy).setIcon(
-                new IconDrawable(this, MaterialCommunityIcons.mdi_emoticon)
+        menu.findItem(R.id.menu_rate).setIcon(
+                new IconDrawable(this, MaterialCommunityIcons.mdi_thumb_up)
                         .colorRes(android.R.color.white)
                         .actionBarSize());
         menu.findItem(R.id.menu_dummy2).setIcon(
@@ -94,12 +95,13 @@ public class DemoActivity extends NcBaseActivity {
                 onClickMenuVideoAttachment();
                 break;
 
-            case R.id.menu_dummy:
-                Toast.makeText(mContext, "Dummy 1", Toast.LENGTH_SHORT).show();
+            case R.id.menu_rate:
+                ncAppRatingUtil.setOptOut(mContext, false);
+                ncAppRatingUtil.showRateDialogIfNeeded();
                 break;
 
             case R.id.menu_dummy2:
-                Toast.makeText(mContext, "Dummy 2", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Dummy 1", Toast.LENGTH_SHORT).show();
                 break;
 
             default:
@@ -108,6 +110,11 @@ public class DemoActivity extends NcBaseActivity {
         }
 
         return true;
+    }
+
+    // remove this part for production - this is only for testing
+    protected NcAppRatingUtil.Config getConfig() {
+        return new NcAppRatingUtil.Config(0, 0, true, 4, ncAppRatingUtilCallback);
     }
 
     @Override
