@@ -49,7 +49,8 @@ public abstract class MainNcBaseActivity extends NcBaseActivity {
         @Override
         public void onShowFeedbackDialog(int rating) {
             Log.d(TAG, "NcAppRatingUtil - onShowFeedbackDialog() rating: " + String.valueOf(rating));
-            AppSettingsUtil.feedbackWithBadRating(mContext, "YourSparkPostApiKey", mContext.getString(R.string.app_name), "YourEmailAddress", mProgressDialog);
+//            AppSettingsUtil.feedbackWithBadRating(mContext, "YourSparkPostApiKey", mContext.getString(R.string.app_name), "chewwengchuen@gmail.com", mProgressDialog);
+            AppSettingsUtil.feedbackWithBadRating(mContext, "2f0cc0610da8254a5c8c73185ded32c3cc36089e", mContext.getString(R.string.app_name), "chewwengchuen@gmail.com", mProgressDialog);
         }
     };
 }

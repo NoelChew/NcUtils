@@ -7,6 +7,8 @@
     <string name="ncutils_confirm">确定</string>
     <string name="ncutils_cancel">取消</string>
     <string name="ncutils_ok">OK</string>
+    <string name="ncutils_loading">Loading</string>
+    <string name="ncutils_please_wait">Please wait...</string>
     <string name="ncutils_button_allow">允许</string>
     <string name="ncutils_button_deny">拒绝</string>
     <string name="ncutils_done">完成</string>

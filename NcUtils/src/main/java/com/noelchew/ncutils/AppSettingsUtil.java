@@ -7,13 +7,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.text.InputType;
-import android.widget.EditText;
+import android.text.TextUtils;
 
-import com.koushikdutta.async.future.FutureCallback;
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.noelchew.ncutils.email.EmailListener;
 import com.noelchew.ncutils.email.EmailUtil;
 import com.noelchew.ncutils.email.sparkpost.SparkPostEmailUtil;
 import com.noelchew.ncutils.email.sparkpost.SparkPostRecipient;
+import com.noelchew.ncutils.email.sparkpost.SparkPostSender;
 
 /**
  * Created by noelchew on 11/23/15.
@@ -85,54 +89,92 @@ public class AppSettingsUtil {
     }
 
     public static void sendFeedbackAnonymously(final Context context, final String sparkPostApiKey, final String appName, final String emailAddress, final ProgressDialog progressDialog) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.nc_utils_feedback);
-        builder.setMessage(R.string.nc_utils_feedback_message);
-
-        // Set up the input
-        EditText tmpInput = new EditText(context);
-        tmpInput.setHint(R.string.nc_utils_insert_feedback);
-        tmpInput.setSingleLine(false);
-        tmpInput.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        final EditText input = tmpInput;
-        builder.setView(input)
-                .setNegativeButton(R.string.nc_utils_feedback_cancel, null)
-                .setPositiveButton(R.string.nc_utils_feedback_send, new DialogInterface.OnClickListener() {
+        AlertDialogUtil.showAlertDialogWithInput(context,
+                context.getString(R.string.nc_utils_feedback),
+                context.getString(R.string.nc_utils_feedback_message),
+                context.getString(R.string.nc_utils_insert_feedback),
+                "",
+                InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE,
+                new MaterialDialog.InputCallback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (progressDialog != null && !progressDialog.isShowing()) {
-                            progressDialog.show();
+                    public void onInput(@NonNull MaterialDialog dialog, CharSequence feedback) {
+                        final String feedbackContent = feedback.toString();
+                        if (!TextUtils.isEmpty(feedbackContent)) {
+                            AlertDialogUtil.showAlertDialogWithInput(context,
+                                    context.getString(R.string.nc_utils_feedback_input_email_address_title),
+                                    context.getString(R.string.nc_utils_feedback_input_email_address_message),
+                                    context.getString(R.string.nc_utils_feedback_hint_email_address),
+                                    "",
+                                    InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS | InputType.TYPE_CLASS_TEXT,
+                                    new MaterialDialog.InputCallback() {
+                                        @Override
+                                        public void onInput(@NonNull MaterialDialog dialog, CharSequence email) {
+                                            if (progressDialog != null && !progressDialog.isShowing()) {
+                                                progressDialog.show();
+                                            }
+
+                                            final String userEmail = email.toString();
+
+                                            EmailListener emailListener = new EmailListener() {
+                                                @Override
+                                                public void onSuccess() {
+                                                    if (progressDialog != null && progressDialog.isShowing()) {
+                                                        progressDialog.dismiss();
+                                                    }
+                                                    AlertDialogUtil.showAlertDialogMessage(context, R.string.nc_utils_feedback, R.string.nc_utils_feedback_send_success);
+                                                    AnalyticsUtil.sendAnalyticsEventTrack(context, "Action", "Send Feedback Anonymously");
+                                                }
+
+                                                @Override
+                                                public void onError(String errorMessage) {
+                                                    if (progressDialog != null && progressDialog.isShowing()) {
+                                                        progressDialog.dismiss();
+                                                    }
+                                                    if (!TextUtils.isEmpty(errorMessage)) {
+                                                        ToastUtil.toastShortMessage(context, errorMessage);
+                                                    }
+                                                    AnalyticsUtil.sendAnalyticsEventTrack(context, "Error", "Error Sending Feedback Anonymously");
+                                                }
+                                            };
+
+                                            if (ValidatorUtil.isValidEmail(userEmail.trim())) {
+                                                SparkPostEmailUtil.sendEmail(context,
+                                                        sparkPostApiKey,
+                                                        appName + " Android App - Feedback",
+                                                        feedbackContent + "\nUser Email: " + userEmail.trim(),
+                                                        new SparkPostSender("abc@noelchew.com", "Unknown user"),
+                                                        new SparkPostRecipient(emailAddress),
+                                                        emailListener);
+                                            } else {
+                                                SparkPostEmailUtil.sendEmail(context,
+                                                        sparkPostApiKey,
+                                                        appName + " Android App - Feedback",
+                                                        feedbackContent + "\nUser Email: " + userEmail.trim(),
+                                                        new SparkPostSender("abc@noelchew.com", "Unknown user"),
+                                                        new SparkPostRecipient(emailAddress),
+                                                        emailListener);
+                                            }
+                                        }
+                                    },
+                                    context.getString(R.string.nc_utils_feedback_send));
+                        } else {
+                            ToastUtil.toastShortMessage(context, R.string.nc_utils_feedback_invalid_feedback);
                         }
-                        SparkPostEmailUtil.sendEmail(context, sparkPostApiKey, appName + " Android App - Feedback", input.getText().toString(), new SparkPostRecipient(emailAddress), new FutureCallback<String>() {
-                            @Override
-                            public void onCompleted(Exception e, String result) {
-                                if (progressDialog != null && progressDialog.isShowing()) {
-                                    progressDialog.dismiss();
-                                }
-
-                                if (result != null) {
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(context, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
-                                    builder.setTitle(R.string.nc_utils_feedback)
-                                            .setMessage(R.string.nc_utils_feedback_send_success)
-                                            .create()
-                                            .show();
-                                    AnalyticsUtil.sendAnalyticsEventTrack(context, "Action", "Send Feedback Anonymously");
-                                } else {
-                                    if (e != null && e.getMessage() != null) {
-                                        ToastUtil.toastShortMessage(context, e.getMessage());
-                                    }
-                                    AnalyticsUtil.sendAnalyticsEventTrack(context, "Error", "Error Sending Feedback Anonymously");
-                                }
-                            }
-                        });
-
                     }
-                })
-                .create()
-                .show();
+                },
+                context.getString(R.string.ncutils_ok),
+                context.getString(R.string.nc_utils_feedback_cancel),
+                new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                }
+        );
     }
 
-    public static void sendFeedbackByEmail(Context context, String appName, String emailAddress) {
+    public static void sendFeedbackByEmail(Context context, String appName, String
+            emailAddress) {
         EmailUtil.sendEmailByIntent(context, appName + " " + context.getString(R.string.nc_utils_feedback_email_subject), context.getString(R.string.nc_utils_feedback_email_message), emailAddress);
         AnalyticsUtil.sendAnalyticsEventTrack(context, "Action", "Feedback by Email");
     }

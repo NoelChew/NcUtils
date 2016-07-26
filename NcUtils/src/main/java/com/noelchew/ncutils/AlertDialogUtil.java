@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,14 @@ public class AlertDialogUtil {
         builder.setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(R.string.ncutils_ok, onClickListener)
+                .create()
+                .show();
+    }
+
+    public static void showAlertDialogMessage(Context context, int title, int message) {
+        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
+        builder.setTitle(title)
+                .setMessage(message)
                 .create()
                 .show();
     }
@@ -58,6 +67,30 @@ public class AlertDialogUtil {
                 .show();
     }
 
+    public static void showAlertDialogWithInput(Context context, String title, String message, String hint, String prefill, int inputType, MaterialDialog.InputCallback inputCallback, String positiveButtonText) {
+        new MaterialDialog.Builder(context)
+                .title(title)
+                .content(message)
+                .inputType(inputType)
+//                .inputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE)
+                .input(hint, prefill, inputCallback)
+                .positiveText(positiveButtonText)
+                .show();
+    }
+
+    public static void showAlertDialogWithInput(Context context, String title, String message, String hint, String prefill, int inputType, MaterialDialog.InputCallback inputCallback, String positiveButtonText, String negativeButtonText, MaterialDialog.SingleButtonCallback negativeButtonCallback) {
+        new MaterialDialog.Builder(context)
+                .title(title)
+                .content(message)
+                .inputType(inputType)
+                .input(hint, prefill, inputCallback)
+                .cancelable(false)
+                .positiveText(positiveButtonText)
+                .negativeText(negativeButtonText)
+                .onNegative(negativeButtonCallback)
+                .show();
+    }
+
     public static void showAlertDialogWithSelections(Context context, int title, ArrayList<String> selectionArrayList, DialogInterface.OnClickListener onClickListener) {
         CharSequence[] tmpSelections = new CharSequence[selectionArrayList.size()];
         for (int i = 0; i < selectionArrayList.size(); i++) {
@@ -72,7 +105,6 @@ public class AlertDialogUtil {
                 .create()
                 .show();
     }
-
 
 
     public static void showAlertDialogWithSelections(Context context, ArrayList<String> selectionArrayList, DialogInterface.OnClickListener onClickListener) {
@@ -108,7 +140,6 @@ public class AlertDialogUtil {
                 .create()
                 .show();
     }
-
 
 
     public static void showYesNoDialog(Context context, int title, int positiveButtonText, int negativeButtonText, DialogInterface.OnClickListener positiveListener, DialogInterface.OnClickListener negativeListener) {

@@ -71,9 +71,13 @@
     <!-- feedback anonymously-->
     <string name="nc_utils_feedback_message">Please give us your honest feedback.</string>
     <string name="nc_utils_insert_feedback">Type in your feedback</string>
-    <string name="nc_utils_feedback_send_success">Feedback submitted.</string>
+    <string name="nc_utils_feedback_send_success">Thank you for your feedback.</string>
+    <string name="nc_utils_feedback_invalid_feedback">Invalid feedback :(</string>
+    <string name="nc_utils_feedback_input_email_address_title">Your email (Optional)</string>
+    <string name="nc_utils_feedback_input_email_address_message">Let us reach out to you by filling up your email address below:</string>
+    <string name="nc_utils_feedback_hint_email_address">Your email address</string>
 
     <!-- feedback email -->
     <string name="nc_utils_feedback_email_subject">App - Feedback</string>
-    <string name="nc_utils_feedback_email_message">Hi developer,\n\n</string>
+    <string name="nc_utils_feedback_email_message">Hello,\n\n</string>
 </resources>
