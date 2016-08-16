@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 3
-        versionName "0.1.2"
+        versionCode 4
+        versionName "0.1.3"
     }
     buildTypes {
         release {
@@ -22,12 +22,12 @@ android {
 }
 
 dependencies {
+    /* google api */
+    def googleVersion = '23.4.0'
+    
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.afollestad.material-dialogs:core:0.8.5.9'
-    compile 'com.greysonparrelli.permiso:permiso:0.2.0'
-    compile 'com.kbeanie:multipicker:1.1.1@aar'
+    compile "com.android.support:appcompat-v7:${googleVersion}"
+    compile "com.android.support:design:${googleVersion}"
     compile 'com.koushikdutta.ion:ion:2.+'
 }

@@ -8,16 +8,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.greysonparrelli.permiso.Permiso;
 import com.noelchew.ncutils.KeyboardUtil;
-import com.noelchew.ncutils.PickerUtil;
+import com.noelchew.ncutils.R;
 
 public abstract class NcBaseActivity extends AppCompatActivity {
 
@@ -25,9 +23,6 @@ public abstract class NcBaseActivity extends AppCompatActivity {
     private Toolbar toolbar;
     protected ProgressDialog mProgressDialog;
     protected Menu menu;
-
-    protected PickerUtil pickerUtil;
-
     protected String TAG = "BaseActivity";
 
     @Override
@@ -36,14 +31,9 @@ public abstract class NcBaseActivity extends AppCompatActivity {
         mContext = this;
         setContentView(getLayoutResource());
         setupToolbar();
-        pickerUtil = new PickerUtil(this);
         mProgressDialog = new ProgressDialog(mContext);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Permiso.getInstance().setActivity(this);
+        mProgressDialog.setTitle(R.string.ncutils_loading);
+        mProgressDialog.setMessage(getString(R.string.ncutils_please_wait));
     }
 
     @Override
@@ -58,11 +48,6 @@ public abstract class NcBaseActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(getDisplayHomeAsUpEnabled());
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Permiso.getInstance().onRequestPermissionResult(requestCode, permissions, grantResults);
     }
 
     protected abstract int getLayoutResource();
@@ -208,26 +193,6 @@ public abstract class NcBaseActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // You have to save path in case your activity is killed.
-        // In such a scenario, you will need to re-initialize the CameraImagePicker
-        outState.putString("picker_path", pickerUtil.pickerPath);
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        // After Activity recreate, you need to re-initialize these
-        // two values to be able to re-initialize CameraImagePicker
-        if (savedInstanceState != null) {
-            if (savedInstanceState.containsKey("picker_path")) {
-                pickerUtil.pickerPath = savedInstanceState.getString("picker_path");
-            }
-        }
-        super.onRestoreInstanceState(savedInstanceState);
     }
 
     public void showProgressDialog(final String msg) {
