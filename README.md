@@ -1,3 +1,4 @@
+[![Release](https://jitpack.io/v/noelchew/NcUtils.svg)](https://jitpack.io/#noelchew/NcUtils)
 # NcUtils
 Utilities for Android development.
 
@@ -24,7 +25,7 @@ allprojects {
 Application level gradle:
 ```
 dependencies {
-    compile 'com.github.noelchew:NcUtils:0.1.1'
+    compile 'com.github.noelchew:NcUtils:0.1.3'
 }
 ```
 Note: do not add the jitpack.io repository under buildscript
