@@ -8,7 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 
 /**
- * Created by NoelChew on 3/14/16.
+ * Created by noelchew on 3/14/16.
  */
 public class ResourceUtil {
     public static Bitmap drawableResourceToBitmap(Context context, int drawableResource) {
