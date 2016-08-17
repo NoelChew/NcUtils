@@ -30,4 +30,5 @@ dependencies {
     compile "com.android.support:appcompat-v7:${googleVersion}"
     compile "com.android.support:design:${googleVersion}"
     compile 'com.koushikdutta.ion:ion:2.+'
+    compile 'com.github.renaudcerrato:static-maps-api:1.0.2'
 }
