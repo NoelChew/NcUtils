@@ -1,5 +1,6 @@
-[![Release](https://jitpack.io/v/noelchew/NcUtils.svg)](https://jitpack.io/#noelchew/NcUtils)
 # NcUtils
+[![Release](https://jitpack.io/v/noelchew/NcUtils.svg)](https://jitpack.io/#noelchew/NcUtils)
+
 Utilities for Android development.
 
 - Image and video picker with Runtime permissions.
