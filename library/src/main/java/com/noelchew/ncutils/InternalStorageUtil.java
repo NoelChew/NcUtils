@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 
 /**
  * Created by noelchew on 8/4/15.
@@ -84,20 +83,6 @@ public class InternalStorageUtil {
 
     public static void setInt(Context context, String key, int value) {
         setString(context, key, String.valueOf(value));
-    }
-
-    public static HashMap<String, String> getHashMap(Context context, String key) {
-        String serialisedMap = getString(context, key);
-        if (!TextUtils.isEmpty(serialisedMap)) {
-            return new HashMap<>(HashMapUtil.stringToMap(serialisedMap));
-        } else {
-            return new HashMap<>();
-        }
-    }
-
-    public static void setHashMap(Context context, String key, HashMap<String, String> hashMap) {
-        String serialisedMap = HashMapUtil.mapToString(hashMap);
-        setString(context, key, serialisedMap);
     }
 
 }
