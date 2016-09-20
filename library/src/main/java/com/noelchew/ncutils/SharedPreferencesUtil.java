@@ -2,6 +2,9 @@ package com.noelchew.ncutils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
+
+import java.util.HashMap;
 
 public class SharedPreferencesUtil {
 
@@ -33,4 +36,17 @@ public class SharedPreferencesUtil {
         getSharedPreferences(context).edit().putInt(key, value).commit();
     }
 
+    public static HashMap<String, String> getHashMap(Context context, String key) {
+        String serialisedMap = getString(context, key);
+        if (!TextUtils.isEmpty(serialisedMap)) {
+            return new HashMap<>(HashMapUtil.stringToMap(serialisedMap));
+        } else {
+            return new HashMap<>();
+        }
+    }
+
+    public static void setHashMap(Context context, String key, HashMap<String, String> hashMap) {
+        String serialisedMap = HashMapUtil.mapToString(hashMap);
+        setString(context, key, serialisedMap);
+    }
 }

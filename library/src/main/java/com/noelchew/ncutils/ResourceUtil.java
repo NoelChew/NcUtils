@@ -31,8 +31,12 @@ public class ResourceUtil {
         return context.getResources().getIdentifier(resourceName, "id", context.getPackageName());
     }
 
+    public static int getStringResourceId(Context context, String resourceName) {
+        return context.getResources().getIdentifier(resourceName, "string", context.getPackageName());
+    }
+
     public static String getStringFromResourceName(Context context, String resourceName) {
-        return context.getString(getResourceId(context, resourceName));
+        return context.getString(getStringResourceId(context, resourceName));
     }
 
     public static int getPrimaryColor(Context context) {
