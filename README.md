@@ -26,7 +26,7 @@ allprojects {
 Application level gradle:
 ```
 dependencies {
-    compile 'com.github.noelchew:NcUtils:0.1.3'
+    compile 'com.github.noelchew:NcUtils:x.y.z'
 }
 ```
 Note: do not add the jitpack.io repository under buildscript
