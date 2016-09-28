@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 7
-        versionName "0.1.6"
+        versionCode 8
+        versionName "0.1.7"
     }
     buildTypes {
         release {
@@ -29,6 +29,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile "com.android.support:appcompat-v7:${googleVersion}"
     compile "com.android.support:design:${googleVersion}"
-    compile 'com.koushikdutta.ion:ion:2.+'
     compile 'com.github.renaudcerrato:static-maps-api:1.0.2'
 }
