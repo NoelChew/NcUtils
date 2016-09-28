@@ -7,7 +7,7 @@ import com.joanzapata.iconify.fonts.MaterialCommunityModule;
 import com.joanzapata.iconify.fonts.MaterialModule;
 
 /**
- * Created by aio-synergy on 7/4/16.
+ * Created by noelchew on 7/4/16.
  */
 public class MyApplication extends Application {
     private static final String TAG = "MyApplication";
