@@ -18,8 +18,8 @@
     </item>
 
     <item
-        android:id="@+id/menu_rate"
-        android:title="Rate"
+        android:id="@+id/menu_add"
+        android:title="Add"
         app:showAsAction="ifRoom">
     </item>
 

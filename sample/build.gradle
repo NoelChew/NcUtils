@@ -29,4 +29,5 @@ dependencies {
     compile "com.android.support:appcompat-v7:${googleVersion}"
     compile 'com.joanzapata.iconify:android-iconify-material:2.2.2' // (v2.0.0)
     compile 'com.joanzapata.iconify:android-iconify-material-community:2.2.2' // (v1.4.57)
+    compile 'com.jude:easyrecyclerview:4.2.6'
 }

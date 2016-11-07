@@ -19,7 +19,7 @@ import com.noelchew.ncutils.R;
 
 public abstract class NcBaseActivity extends AppCompatActivity {
 
-    protected Context mContext;
+    protected Context context;
     private Toolbar toolbar;
     protected ProgressDialog mProgressDialog;
     protected Menu menu;
@@ -28,10 +28,10 @@ public abstract class NcBaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = this;
+        context = this;
         setContentView(getLayoutResource());
         setupToolbar();
-        mProgressDialog = new ProgressDialog(mContext);
+        mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setTitle(R.string.ncutils_loading);
         mProgressDialog.setMessage(getString(R.string.ncutils_please_wait));
     }
@@ -193,6 +193,18 @@ public abstract class NcBaseActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showProgressDialog() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mProgressDialog != null && !mProgressDialog.isShowing()) {
+                    mProgressDialog.show();
+                }
+            }
+        });
+
     }
 
     public void showProgressDialog(final String msg) {
