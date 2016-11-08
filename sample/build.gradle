@@ -8,8 +8,8 @@ android {
         applicationId "com.noelchew.ncutils.demo"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 8
-        versionName "0.1.7"
+        versionCode 9
+        versionName "0.1.9"
     }
     buildTypes {
         release {
@@ -29,4 +29,5 @@ dependencies {
     compile "com.android.support:appcompat-v7:${googleVersion}"
     compile 'com.joanzapata.iconify:android-iconify-material:2.2.2' // (v2.0.0)
     compile 'com.joanzapata.iconify:android-iconify-material-community:2.2.2' // (v1.4.57)
+    compile 'com.jude:easyrecyclerview:4.2.6'
 }
