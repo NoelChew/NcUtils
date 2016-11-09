@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -16,13 +16,16 @@ import com.joanzapata.iconify.fonts.MaterialCommunityIcons;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
+import com.noelchew.ncutils.AlertDialogUtil;
 import com.noelchew.ncutils.PixelUtil;
 import com.noelchew.ncutils.ToastUtil;
 import com.noelchew.ncutils.activities.NcBaseActivity;
 import com.noelchew.ncutils.demo.adapter.DummyAdapter;
+import com.noelchew.ncutils.demo.data.DummyData;
 import com.noelchew.ncutils.demo.model.DummyObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by noelchew on 7/4/16.
@@ -176,33 +179,40 @@ public class DemoActivity extends NcBaseActivity {
     private RecyclerArrayAdapter.OnItemLongClickListener onItemLongClickListener = new RecyclerArrayAdapter.OnItemLongClickListener() {
         @Override
         public boolean onItemLongClick(final int position) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Update or Delete")
-                    .setItems(new CharSequence[]{"Update", "Delete"}, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            DummyObject dummyObject = adapter.getItem(position);
-                            switch (which) {
-                                case 0:
-                                    dummyObject.setName(dummyObject.getName() + " [updated]");
+            ArrayList<String> selections = new ArrayList<>(Arrays.asList(new String[]{"Edit", "Delete"}));
+            AlertDialogUtil.showAlertDialogWithSelections(context, "Options", selections, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    final DummyObject dummyObject = adapter.getItem(position);
+                    switch (which) {
+                        case 0:
+                            AlertDialogUtil.showAlertDialogWithInput(context, "Edit", "Edit Item Name:", "Text", dummyObject.getName(), InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS, new AlertDialogUtil.InputCallback() {
+                                @Override
+                                public void onInput(DialogInterface dialog, CharSequence input) {
+                                    dummyObject.setName(input.toString());
                                     dummyObject.update();
-                                    ToastUtil.toastShortMessage(context, "Item " + dummyObject.getName() + " is updated.");
+                                    ToastUtil.toastShortMessage(context, "Saved!");
                                     adapter.insert(dummyObject, position);
                                     adapter.remove(position);
-                                    break;
+                                }
+                            }, "Save");
 
-                                case 1:
+                            break;
+
+                        case 1:
+                            AlertDialogUtil.showYesNoDialog(context, "Delete Item", "Are you sure?", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
                                     dummyObject.delete();
                                     ToastUtil.toastShortMessage(context, "Item " + dummyObject.getName() + " is deleted from list.");
                                     adapter.remove(position);
+                                }
+                            });
 
-                                    break;
-                            }
-                        }
-                    })
-                    .show();
-
+                            break;
+                    }
+                }
+            });
 
             return true;
         }
@@ -213,8 +223,27 @@ public class DemoActivity extends NcBaseActivity {
         public void onRefresh() {
             adapter.clear();
             ArrayList<DummyObject> dummyObjectArrayList = new DummyObject().getPaginatedList(adapter.getCount(), DATABASE_TAKE_ROW_COUNT);
-            adapter.addAll(dummyObjectArrayList);
-            recyclerView.setRefreshing(false);
+            if (dummyObjectArrayList == null || dummyObjectArrayList.isEmpty()) {
+                AlertDialogUtil.showYesNoDialog(context, "No Data Found!", "Do you want to generate dummy data?", "Yes", "No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ArrayList<DummyObject> dummyObjectArrayList = DummyData.getGeneratedDummyData();
+                        for (DummyObject dummyObject : dummyObjectArrayList) {
+                            dummyObject.save();
+                        }
+                        adapter.addAll(dummyObjectArrayList);
+                        recyclerView.setRefreshing(false);
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        recyclerView.setRefreshing(false);
+                    }
+                });
+            } else {
+                adapter.addAll(dummyObjectArrayList);
+                recyclerView.setRefreshing(false);
+            }
         }
     };
 
