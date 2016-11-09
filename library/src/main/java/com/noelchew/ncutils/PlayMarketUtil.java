@@ -8,7 +8,7 @@ import android.net.Uri;
 /**
  * Created by noelchew on 11/23/15.
  */
-public class AppSettingsUtil {
+public class PlayMarketUtil {
 
     public static void goToMarket(Context context, String webUrl, String marketUri) {
         Uri uri = Uri.parse(marketUri);
