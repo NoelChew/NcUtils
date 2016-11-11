@@ -24,6 +24,10 @@ public class SharedPreferencesUtil {
         return getSharedPreferences(context).getInt(key, 0);
     }
 
+    public static long getLong(Context context, String key) {
+        return getSharedPreferences(context).getLong(key, 0);
+    }
+
     public static void setString(Context context, String key, String value) {
         getSharedPreferences(context).edit().putString(key, value).commit();
     }
@@ -34,6 +38,10 @@ public class SharedPreferencesUtil {
 
     public static void setInt(Context context, String key, int value) {
         getSharedPreferences(context).edit().putInt(key, value).commit();
+    }
+
+    public static void setLong(Context context, String key, long value) {
+        getSharedPreferences(context).edit().putLong(key, value).commit();
     }
 
     public static HashMap<String, String> getHashMap(Context context, String key) {
