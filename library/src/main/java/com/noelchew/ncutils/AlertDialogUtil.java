@@ -32,6 +32,7 @@ public class AlertDialogUtil {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         AlertDialog alertDialog = builder.setTitle(title)
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(R.string.ncutils_ok, onClickListener)
                 .show();
 
@@ -50,6 +51,7 @@ public class AlertDialogUtil {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         AlertDialog alertDialog = builder.setTitle(title)
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(R.string.ncutils_ok, onClickListener)
                 .show();
 
@@ -60,6 +62,7 @@ public class AlertDialogUtil {
     public static void showAlertDialogMessage(Context context, int message, DialogInterface.OnClickListener onClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         AlertDialog alertDialog = builder.setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(R.string.ncutils_ok, onClickListener)
                 .show();
 
@@ -69,6 +72,7 @@ public class AlertDialogUtil {
     public static void showAlertDialogMessage(Context context, String message, DialogInterface.OnClickListener onClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         AlertDialog alertDialog = builder.setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(R.string.ncutils_ok, onClickListener)
                 .show();
 
