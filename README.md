@@ -24,6 +24,9 @@ allprojects {
 ```
 
 Application level gradle:
+
+[![Release](https://jitpack.io/v/noelchew/NcUtils.svg)](https://jitpack.io/#noelchew/NcUtils)
+
 ```
 dependencies {
     compile 'com.github.noelchew:NcUtils:x.y.z'
