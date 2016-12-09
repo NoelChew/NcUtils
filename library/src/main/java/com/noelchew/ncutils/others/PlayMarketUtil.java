@@ -1,4 +1,4 @@
-package com.noelchew.ncutils;
+package com.noelchew.ncutils.others;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;

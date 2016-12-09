@@ -1,8 +1,11 @@
-package com.noelchew.ncutils;
+package com.noelchew.ncutils.device;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
 /**
@@ -116,4 +119,15 @@ public class NetworkUtil {
             return false;
         }
     }
+
+    public static void openWifiSettings(Context context) throws ActivityNotFoundException {
+        Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
+
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(intent);
+        } else {
+            throw new ActivityNotFoundException();
+        }
+    }
+
 }

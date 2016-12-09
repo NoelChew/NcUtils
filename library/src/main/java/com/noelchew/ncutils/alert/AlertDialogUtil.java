@@ -1,10 +1,13 @@
-package com.noelchew.ncutils;
+package com.noelchew.ncutils.alert;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
+
+import com.noelchew.ncutils.R;
+import com.noelchew.ncutils.ui.ResourceUtil;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,22 @@ public class AlertDialogUtil {
                 .show();
     }
 
+    public static void showAlertDialogMessage(Context context, String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title)
+                .setMessage(message)
+                .create()
+                .show();
+    }
+
+    public static void showAlertDialogMessage(Context context, int title, int message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title)
+                .setMessage(message)
+                .create()
+                .show();
+    }
+
     public static void showAlertDialogMessage(Context context, String title, String message, DialogInterface.OnClickListener onClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         AlertDialog alertDialog = builder.setTitle(title)
@@ -37,14 +56,6 @@ public class AlertDialogUtil {
                 .show();
 
         setAlertDialogButtonColor(alertDialog, ResourceUtil.getAccentColor(context));
-    }
-
-    public static void showAlertDialogMessage(Context context, int title, int message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(title)
-                .setMessage(message)
-                .create()
-                .show();
     }
 
     public static void showAlertDialogMessage(Context context, int title, int message, DialogInterface.OnClickListener onClickListener) {
@@ -58,8 +69,7 @@ public class AlertDialogUtil {
         setAlertDialogButtonColor(alertDialog, ResourceUtil.getAccentColor(context));
     }
 
-
-    public static void showAlertDialogMessage(Context context, int message, DialogInterface.OnClickListener onClickListener) {
+    public static void showAlertDialogMessage(Context context, String message, DialogInterface.OnClickListener onClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         AlertDialog alertDialog = builder.setMessage(message)
                 .setCancelable(false)
@@ -69,7 +79,7 @@ public class AlertDialogUtil {
         setAlertDialogButtonColor(alertDialog, ResourceUtil.getAccentColor(context));
     }
 
-    public static void showAlertDialogMessage(Context context, String message, DialogInterface.OnClickListener onClickListener) {
+    public static void showAlertDialogMessage(Context context, int message, DialogInterface.OnClickListener onClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         AlertDialog alertDialog = builder.setMessage(message)
                 .setCancelable(false)

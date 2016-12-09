@@ -5,7 +5,7 @@ import android.app.Application;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.MaterialCommunityModule;
 import com.joanzapata.iconify.fonts.MaterialModule;
-import com.noelchew.ncutils.database.DatabaseModule;
+import com.noelchew.ncutils.data.database.DatabaseModule;
 import com.noelchew.ncutils.demo.model.DummyObject;
 
 /**
