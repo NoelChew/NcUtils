@@ -1,4 +1,4 @@
-package com.noelchew.ncutils;
+package com.noelchew.ncutils.alert;
 
 import android.content.Context;
 import android.widget.Toast;

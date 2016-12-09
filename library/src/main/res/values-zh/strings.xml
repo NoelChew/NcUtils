@@ -13,4 +13,6 @@
     <string name="ncutils_error">发生错误！</string>
     <string name="ncutils_network_error">网络问题</string>
     <string name="ncutils_comma">\u3001</string>
+    <string name="ncutils_view_location">查看位置</string>
+    <string name="ncutils_share">分享</string>
 </resources>

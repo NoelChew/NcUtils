@@ -1,4 +1,4 @@
-package com.noelchew.ncutils;
+package com.noelchew.ncutils.others;
 
 import java.text.DateFormat;
 import java.text.ParseException;

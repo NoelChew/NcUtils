@@ -1,4 +1,4 @@
-package com.noelchew.ncutils;
+package com.noelchew.ncutils.data;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;

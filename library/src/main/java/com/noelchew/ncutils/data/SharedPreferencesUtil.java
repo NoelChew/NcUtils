@@ -1,4 +1,4 @@
-package com.noelchew.ncutils;
+package com.noelchew.ncutils.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;

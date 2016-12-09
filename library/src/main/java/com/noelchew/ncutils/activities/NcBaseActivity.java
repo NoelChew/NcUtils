@@ -14,7 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.noelchew.ncutils.KeyboardUtil;
+import com.noelchew.ncutils.ui.KeyboardUtil;
 import com.noelchew.ncutils.R;
 
 public abstract class NcBaseActivity extends AppCompatActivity {

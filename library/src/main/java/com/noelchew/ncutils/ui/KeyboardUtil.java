@@ -1,4 +1,4 @@
-package com.noelchew.ncutils;
+package com.noelchew.ncutils.ui;
 
 import android.app.Activity;
 import android.content.Context;

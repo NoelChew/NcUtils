@@ -1,4 +1,4 @@
-package com.noelchew.ncutils.database;
+package com.noelchew.ncutils.data.database;
 
 import java.util.HashMap;
 

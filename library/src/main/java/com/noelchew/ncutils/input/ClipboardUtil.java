@@ -1,4 +1,4 @@
-package com.noelchew.ncutils;
+package com.noelchew.ncutils.input;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;

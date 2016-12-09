@@ -1,11 +1,13 @@
-package com.noelchew.ncutils;
+package com.noelchew.ncutils.location;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.text.TextUtils;
 
 import com.mypopsy.maps.StaticMap;
+import com.noelchew.ncutils.R;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -77,6 +79,16 @@ public class GoogleMapUtil {
             }
         }
         intent.setData(Uri.parse("https://maps.google.com/maps?q=loc:" + latitude + "," + longitude + _label));
-        context.startActivity(intent);
+
+        context.startActivity(Intent.createChooser(intent, context.getString(R.string.ncutils_view_location)));
+    }
+
+    public static boolean isGoogleMapsInstalled(Context context) {
+        try {
+            context.getPackageManager().getApplicationInfo("com.google.android.apps.maps", 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 }

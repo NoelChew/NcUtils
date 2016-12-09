@@ -1,6 +1,6 @@
 package com.noelchew.ncutils.demo.model;
 
-import com.noelchew.ncutils.database.DbObject;
+import com.noelchew.ncutils.data.database.DbObject;
 
 /**
  * Created by noelchew on 03/11/2016.
