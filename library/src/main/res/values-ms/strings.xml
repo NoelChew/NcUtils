@@ -1,0 +1,18 @@
+<resources>
+    <!-- common -->
+    <string name="ncutils_yes">Ya</string>
+    <string name="ncutils_no">Tidak</string>
+    <string name="ncutils_confirm">Pasti</string>
+    <string name="ncutils_cancel">Batal</string>
+    <string name="ncutils_ok">OK</string>
+    <string name="ncutils_loading">Loading</string>
+    <string name="ncutils_please_wait">Sila tunggu...</string>
+    <string name="ncutils_button_allow">Beri Kebenaran</string>
+    <string name="ncutils_button_deny">Menafikan</string>
+    <string name="ncutils_done">Siap</string>
+    <string name="ncutils_error">Kesilapan berlaku!</string>
+    <string name="ncutils_network_error">Kesilapan Internet</string>
+    <string name="ncutils_comma">\u002c\u0020</string>
+    <string name="ncutils_view_location">Lihat Lokasi</string>
+    <string name="ncutils_share">Kongsi</string>
+</resources>
