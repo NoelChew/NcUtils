@@ -59,7 +59,7 @@ public class InternalStorageUtil {
         if (value.compareTo(TRUE) != 0 && value.compareTo(FALSE) != 0) {
             return defValue;
         } else {
-            return Boolean.getBoolean(value);
+            return Boolean.valueOf(value);
         }
     }
 
