@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.noelchew.ncutils.demo"
         minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 18
-        versionName "0.1.17"
+        targetSdkVersion 23
+        versionCode 19
+        versionName "0.1.18"
     }
     buildTypes {
         release {
@@ -17,23 +17,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    // add this if you are using espresso
-    configurations.all {
-        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
-    }
 }
 
 dependencies {
-    /* Google Api */
-    def googleVersion = '25.3.1'
-
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':library')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile "com.android.support:appcompat-v7:${googleVersion}"
+    testCompile 'junit:junit:4.12'
+    compile "com.android.support:appcompat-v7:${rootProject.ext.googleVersion}"
     compile 'com.joanzapata.iconify:android-iconify-material:2.2.2' // (v2.0.0)
     compile 'com.joanzapata.iconify:android-iconify-material-community:2.2.2' // (v1.4.57)
     compile 'com.jude:easyrecyclerview:4.2.6'

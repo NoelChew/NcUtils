@@ -5,13 +5,13 @@ group='com.github.noelchew'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 18
-        versionName "0.1.17"
+        targetSdkVersion 23
+        versionCode 19
+        versionName "0.1.18"
     }
     buildTypes {
         release {
@@ -19,16 +19,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    /* google api */
-    def googleVersion = '25.3.1'
     
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${googleVersion}"
-    compile "com.android.support:design:${googleVersion}"
+    testCompile 'junit:junit:4.12'
+    compile "com.android.support:appcompat-v7:${rootProject.ext.googleVersion}"
+    compile "com.android.support:design:${rootProject.ext.googleVersion}"
     compile 'com.github.renaudcerrato:static-maps-api:1.0.2'
 
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
