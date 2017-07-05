@@ -10,7 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 
-import com.noelchew.ncutils.ToastUtil;
+import com.noelchew.ncutils.alert.ToastUtil;
 import com.noelchew.ncutils.demo.model.DummyObject;
 
 /**

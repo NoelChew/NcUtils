@@ -16,13 +16,14 @@ import com.joanzapata.iconify.fonts.MaterialCommunityIcons;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
-import com.noelchew.ncutils.AlertDialogUtil;
-import com.noelchew.ncutils.PixelUtil;
-import com.noelchew.ncutils.ToastUtil;
 import com.noelchew.ncutils.activities.NcBaseActivity;
+import com.noelchew.ncutils.alert.AlertDialogUtil;
+import com.noelchew.ncutils.alert.ToastUtil;
 import com.noelchew.ncutils.demo.adapter.DummyAdapter;
 import com.noelchew.ncutils.demo.data.DummyData;
 import com.noelchew.ncutils.demo.model.DummyObject;
+import com.noelchew.ncutils.device.NetworkUtil;
+import com.noelchew.ncutils.ui.PixelUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -157,6 +158,8 @@ public class DemoActivity extends NcBaseActivity {
         recyclerView.addItemDecoration(itemDecoration);
 
         onRefreshListener.onRefresh();
+
+        NetworkUtil.openWifiSettings(context);
     }
 
     @Override

@@ -13,4 +13,6 @@
     <string name="ncutils_error">Error occurred!</string>
     <string name="ncutils_network_error">Network Error</string>
     <string name="ncutils_comma">\u002c\u0020</string>
+    <string name="ncutils_view_location">View Location</string>
+    <string name="ncutils_share">Share</string>
 </resources>

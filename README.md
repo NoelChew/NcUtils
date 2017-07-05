@@ -24,12 +24,27 @@ allprojects {
 ```
 
 Application level gradle:
+
+[![Release](https://jitpack.io/v/noelchew/NcUtils.svg)](https://jitpack.io/#noelchew/NcUtils)
+
 ```
 dependencies {
     compile 'com.github.noelchew:NcUtils:x.y.z'
 }
 ```
 Note: do not add the jitpack.io repository under buildscript
+
+If you are using Espresso, please force the findbug dependency as shown below:
+```
+android {
+    // ...
+
+    // add this if you are using espresso
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
+    }
+}
+```
 
 # Used by
 Please let me know at chewwengchuen [at] gmail [dot] com to add to this list.
