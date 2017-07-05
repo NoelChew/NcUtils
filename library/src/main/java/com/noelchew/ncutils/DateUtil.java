@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class DateUtil {
     private static Long MILLISECS_PER_DAY = 86400000L;
@@ -51,6 +52,11 @@ public class DateUtil {
 
     public static String dateToString(Date date, String format) {
         DateFormat df = new SimpleDateFormat(format);
+        return df.format(date);
+    }
+
+    public static String dateToString(Date date, String format, Locale locale) {
+        DateFormat df = new SimpleDateFormat(format, locale);
         return df.format(date);
     }
 
