@@ -9,7 +9,8 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class DateUtil {
-    private static Long MILLISECS_PER_DAY = 86400000L;
+
+    public static Long MILLISECS_PER_DAY = 86400000L;
 
     public static Calendar getCalendarFromDate(Date date) {
         Calendar calendar = new GregorianCalendar();
@@ -42,6 +43,16 @@ public class DateUtil {
 
     public static Date getDateFromString(String date, String format) {
         DateFormat df = new SimpleDateFormat(format);
+        try {
+            return df.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return new Date();
+        }
+    }
+
+    public static Date getDateFromString(String date, String format, Locale locale) {
+        DateFormat df = new SimpleDateFormat(format, locale);
         try {
             return df.parse(date);
         } catch (ParseException e) {
@@ -108,17 +119,5 @@ public class DateUtil {
 
     public static Date getOneDayEarlier(Date date) {
         return new Date(date.getTime() - MILLISECS_PER_DAY);
-    }
-
-    public static String getMonthFromDate(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM");
-        return sdf.format(date);
-    }
-
-    public static Date getDateFromDateComponents(int year, int month, int day, int hour, int minute) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day, hour, minute);
-
-        return calendar.getTime();
     }
 }
