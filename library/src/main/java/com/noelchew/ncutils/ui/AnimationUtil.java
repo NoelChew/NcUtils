@@ -7,19 +7,24 @@ import android.os.Build;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.animation.Interpolator;
 
 /**
  * Created by noelchew on 19/08/2016.
  */
 public class AnimationUtil {
     public static void enterAnimateScaleXY(final View view, int delay, long duration, final AnimationUtilListener listener) {
+        enterAnimateScaleXY(view, delay, duration, new FastOutSlowInInterpolator(), listener);
+    }
+
+    public static void enterAnimateScaleXY(final View view, int delay, long duration, Interpolator interpolator, final AnimationUtilListener listener) {
         view.setScaleX(0f);
         view.setScaleY(0f);
         view.setVisibility(View.VISIBLE);
         view.animate()
                 .scaleX(1f)
                 .scaleY(1f)
-                .setInterpolator(new FastOutSlowInInterpolator())
+                .setInterpolator(interpolator)
                 .setStartDelay(delay)
                 .setDuration(duration)
                 .setListener(new Animator.AnimatorListener() {
@@ -29,7 +34,9 @@ public class AnimationUtil {
 
                     @Override public void onAnimationEnd(Animator animator) {
                         view.setVisibility(View.VISIBLE);
-                        listener.onAnimationEnd();
+                        if (listener != null) {
+                            listener.onAnimationEnd();
+                        }
                     }
 
                     @Override public void onAnimationCancel(Animator animator) {
@@ -44,13 +51,17 @@ public class AnimationUtil {
     }
 
     public static void exitAnimateScaleXY(final View view, int delay, long duration, final AnimationUtilListener listener) {
+        exitAnimateScaleXY(view, delay, duration, new FastOutSlowInInterpolator(), listener);
+    }
+
+    public static void exitAnimateScaleXY(final View view, int delay, long duration, Interpolator interpolator, final AnimationUtilListener listener) {
         view.setScaleX(1f);
         view.setScaleY(1f);
         view.setVisibility(View.VISIBLE);
         view.animate()
                 .scaleX(0f)
                 .scaleY(0f)
-                .setInterpolator(new FastOutSlowInInterpolator())
+                .setInterpolator(interpolator)
                 .setStartDelay(delay)
                 .setDuration(duration)
                 .setListener(new Animator.AnimatorListener() {
@@ -60,7 +71,9 @@ public class AnimationUtil {
 
                     @Override public void onAnimationEnd(Animator animator) {
                         view.setVisibility(View.GONE);
-                        listener.onAnimationEnd();
+                        if (listener != null) {
+                            listener.onAnimationEnd();
+                        }
                     }
 
                     @Override public void onAnimationCancel(Animator animator) {
@@ -74,14 +87,18 @@ public class AnimationUtil {
                 .start();
     }
 
-    public static void enterAnimateScaleY(final View view, int delay, long duration) {
+    public static void enterAnimateScaleY(final View view, int delay, long duration, final AnimationUtilListener listener) {
+        enterAnimateScaleY(view, delay, duration, new FastOutSlowInInterpolator(), listener);
+    }
+
+    public static void enterAnimateScaleY(final View view, int delay, long duration, Interpolator interpolator, final AnimationUtilListener listener) {
         view.setScaleX(1f);
         view.setScaleY(0f);
         view.setVisibility(View.VISIBLE);
         view.animate()
                 .scaleX(1f)
                 .scaleY(1f)
-                .setInterpolator(new FastOutSlowInInterpolator())
+                .setInterpolator(interpolator)
                 .setStartDelay(delay)
                 .setDuration(duration)
                 .setListener(new Animator.AnimatorListener() {
@@ -91,6 +108,9 @@ public class AnimationUtil {
 
                     @Override public void onAnimationEnd(Animator animator) {
                         view.setVisibility(View.VISIBLE);
+                        if (listener != null) {
+                            listener.onAnimationEnd();
+                        }
                     }
 
                     @Override public void onAnimationCancel(Animator animator) {
@@ -105,11 +125,15 @@ public class AnimationUtil {
     }
 
     public static void enterFromLeft(final View view, int delay, long duration, final AnimationUtilListener listener) {
-        view.setX(-1000f);
+        enterFromLeft(view, delay, duration, new FastOutSlowInInterpolator(), listener);
+    }
+
+    public static void enterFromLeft(final View view, int delay, long duration, Interpolator interpolator, final AnimationUtilListener listener) {
+        view.setX(-1500f);
         view.setVisibility(View.VISIBLE);
         view.animate()
                 .x(0f)
-                .setInterpolator(new FastOutSlowInInterpolator())
+                .setInterpolator(interpolator)
                 .setStartDelay(delay)
                 .setDuration(duration)
                 .setListener(new Animator.AnimatorListener() {
@@ -119,7 +143,9 @@ public class AnimationUtil {
 
                     @Override public void onAnimationEnd(Animator animator) {
                         view.setVisibility(View.VISIBLE);
-                        listener.onAnimationEnd();
+                        if (listener != null) {
+                            listener.onAnimationEnd();
+                        }
                     }
 
                     @Override public void onAnimationCancel(Animator animator) {
@@ -134,11 +160,15 @@ public class AnimationUtil {
     }
 
     public static void enterFromTop(final View view, int delay, long duration, final AnimationUtilListener listener) {
+        enterFromTop(view, delay, duration, new FastOutSlowInInterpolator(), listener);
+    }
+
+    public static void enterFromTop(final View view, int delay, long duration, Interpolator interpolator, final AnimationUtilListener listener) {
         view.setY(-1000f);
         view.setVisibility(View.VISIBLE);
         view.animate()
                 .y(0f)
-                .setInterpolator(new FastOutSlowInInterpolator())
+                .setInterpolator(interpolator)
                 .setStartDelay(delay)
                 .setDuration(duration)
                 .setListener(new Animator.AnimatorListener() {
@@ -148,7 +178,9 @@ public class AnimationUtil {
 
                     @Override public void onAnimationEnd(Animator animator) {
                         view.setVisibility(View.VISIBLE);
-                        listener.onAnimationEnd();
+                        if (listener != null) {
+                            listener.onAnimationEnd();
+                        }
                     }
 
                     @Override public void onAnimationCancel(Animator animator) {
@@ -163,11 +195,15 @@ public class AnimationUtil {
     }
 
     public static void exitToLeft(final View view, int delay, long duration, final AnimationUtilListener listener) {
+        exitToLeft(view, delay, duration, new FastOutSlowInInterpolator(), listener);
+    }
+
+    public static void exitToLeft(final View view, int delay, long duration, Interpolator interpolator, final AnimationUtilListener listener) {
         view.setX(0f);
         view.setVisibility(View.VISIBLE);
         view.animate()
-                .x(-1000f)
-                .setInterpolator(new FastOutSlowInInterpolator())
+                .x(-1500f)
+                .setInterpolator(interpolator)
                 .setStartDelay(delay)
                 .setDuration(duration)
                 .setListener(new Animator.AnimatorListener() {
@@ -177,7 +213,9 @@ public class AnimationUtil {
 
                     @Override public void onAnimationEnd(Animator animator) {
                         view.setVisibility(View.GONE);
-                        listener.onAnimationEnd();
+                        if (listener != null) {
+                            listener.onAnimationEnd();
+                        }
                     }
 
                     @Override public void onAnimationCancel(Animator animator) {
@@ -192,11 +230,15 @@ public class AnimationUtil {
     }
 
     public static void exitToTop(final View view, int delay, long duration, final AnimationUtilListener listener) {
+        exitToTop(view, delay, duration, new FastOutSlowInInterpolator(), listener);
+    }
+
+    public static void exitToTop(final View view, int delay, long duration, Interpolator interpolator, final AnimationUtilListener listener) {
         view.setY(0f);
         view.setVisibility(View.VISIBLE);
         view.animate()
                 .y(-1000f)
-                .setInterpolator(new FastOutSlowInInterpolator())
+                .setInterpolator(interpolator)
                 .setStartDelay(delay)
                 .setDuration(duration)
                 .setListener(new Animator.AnimatorListener() {
@@ -206,7 +248,9 @@ public class AnimationUtil {
 
                     @Override public void onAnimationEnd(Animator animator) {
                         view.setVisibility(View.GONE);
-                        listener.onAnimationEnd();
+                        if (listener != null) {
+                            listener.onAnimationEnd();
+                        }
                     }
 
                     @Override public void onAnimationCancel(Animator animator) {
@@ -220,14 +264,18 @@ public class AnimationUtil {
                 .start();
     }
 
-    public static void exitAnimateScaleY(final View view, int delay, long duration) {
+    public static void exitAnimateScaleY(final View view, int delay, long duration, final AnimationUtilListener listener) {
+        exitAnimateScaleY(view, delay, duration, new FastOutSlowInInterpolator(), listener);
+    }
+
+    public static void exitAnimateScaleY(final View view, int delay, long duration, Interpolator interpolator, final AnimationUtilListener listener) {
         view.setScaleX(1f);
         view.setScaleY(1f);
         view.setVisibility(View.VISIBLE);
         view.animate()
                 .scaleX(1f)
                 .scaleY(0f)
-                .setInterpolator(new FastOutSlowInInterpolator())
+                .setInterpolator(interpolator)
                 .setStartDelay(delay)
                 .setDuration(duration)
                 .setListener(new Animator.AnimatorListener() {
@@ -237,6 +285,9 @@ public class AnimationUtil {
 
                     @Override public void onAnimationEnd(Animator animator) {
                         view.setVisibility(View.GONE);
+                        if (listener != null) {
+                            listener.onAnimationEnd();
+                        }
                     }
 
                     @Override public void onAnimationCancel(Animator animator) {
@@ -250,7 +301,7 @@ public class AnimationUtil {
                 .start();
     }
 
-    public static void animateFadeIn(final View view, int delay, long duration) {
+    public static void animateFadeIn(final View view, int delay, long duration, final AnimationUtilListener listener) {
         view.setAlpha(0f);
         view.animate()
                 .alpha(1f)
@@ -260,6 +311,9 @@ public class AnimationUtil {
                 .setListener(new Animator.AnimatorListener() {
                     @Override public void onAnimationStart(Animator animator) {
                         view.setVisibility(View.VISIBLE);
+                        if (listener != null) {
+                            listener.onAnimationEnd();
+                        }
                     }
 
                     @Override public void onAnimationEnd(Animator animator) {
