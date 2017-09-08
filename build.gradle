@@ -6,7 +6,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta1'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta4'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1' // Add this line
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -30,5 +30,5 @@ task clean(type: Delete) {
 }
 
 ext {
-    googleVersion = '26.0.0'
+    googleVersion = '25.3.1'
 }
