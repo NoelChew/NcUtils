@@ -125,14 +125,14 @@ public class AnimationUtil {
     }
 
     public static void enterFromLeft(final View view, int delay, long duration, final AnimationUtilListener listener) {
-        enterFromLeft(view, delay, duration, new FastOutSlowInInterpolator(), listener);
+        enterFromLeft(view, 0, delay, duration, new FastOutSlowInInterpolator(), listener);
     }
 
-    public static void enterFromLeft(final View view, int delay, long duration, Interpolator interpolator, final AnimationUtilListener listener) {
+    public static void enterFromLeft(final View view, float x, int delay, long duration, Interpolator interpolator, final AnimationUtilListener listener) {
         view.setX(-1500f);
         view.setVisibility(View.VISIBLE);
         view.animate()
-                .x(0f)
+                .x(x)
                 .setInterpolator(interpolator)
                 .setStartDelay(delay)
                 .setDuration(duration)
