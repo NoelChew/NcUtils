@@ -50,10 +50,37 @@ public class GoogleMapUtil {
         startGetDirectionActivity(context, String.valueOf(latitude), String.valueOf(longitude));
     }
 
+    public static void startGetDirectionActivity(Context context, double latitude, double longitude, String placeId) {
+        startGetDirectionActivity(context, String.valueOf(latitude), String.valueOf(longitude), placeId);
+    }
+
     public static void startGetDirectionActivity(Context context, String latitude, String longitude) {
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?daddr=" + latitude + "," + longitude));
-        context.startActivity(intent);
+        startGetDirectionActivity(context, latitude, longitude, "");
+    }
+
+    public static void startGetDirectionActivity(Context context, String latitude, String longitude, String googlePlaceId) {
+        String uriGoogle = "https://www.google.com/maps/dir/?api=1&destination=" + latitude + "," + longitude;
+        if (!TextUtils.isEmpty(googlePlaceId)) {
+            uriGoogle += "&destination_place_id=" + googlePlaceId;
+        }
+        Intent intentGoogleNav = new Intent(Intent.ACTION_VIEW, Uri.parse(uriGoogle));
+        intentGoogleNav.setPackage("com.google.android.apps.maps");
+
+        boolean userHasWaze = isWazeInstalled(context);
+        if (userHasWaze) {
+            String url = "waze://?ll=" + latitude + ", " + longitude + "&navigate=yes";
+            Intent intentWaze = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            intentWaze.setPackage("com.waze");
+
+            String title = " ";
+            Intent chooserIntent = Intent.createChooser(intentGoogleNav, title);
+            Intent[] arr = new Intent[1];
+            arr[0] = intentWaze;
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arr);
+            context.startActivity(chooserIntent);
+        } else {
+            context.startActivity(intentGoogleNav);
+        }
     }
 
     public static void startShowLocationActivity(Context context, double latitude, double longitude) {
@@ -86,6 +113,15 @@ public class GoogleMapUtil {
     public static boolean isGoogleMapsInstalled(Context context) {
         try {
             context.getPackageManager().getApplicationInfo("com.google.android.apps.maps", 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    public static boolean isWazeInstalled(Context context) {
+        try {
+            context.getPackageManager().getApplicationInfo("com.waze", 0);
             return true;
         } catch (PackageManager.NameNotFoundException e) {
             return false;
