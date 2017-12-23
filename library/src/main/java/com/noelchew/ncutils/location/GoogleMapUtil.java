@@ -83,6 +83,28 @@ public class GoogleMapUtil {
         }
     }
 
+    public static void startGetDirectionActivity(Context context, String locationName) {
+        Uri uriGoogle = Uri.parse("geo:0,0?q=" + Uri.encode(locationName));
+        Intent intentGoogleNav = new Intent(Intent.ACTION_VIEW, uriGoogle);
+        intentGoogleNav.setPackage("com.google.android.apps.maps");
+
+        boolean userHasWaze = isWazeInstalled(context);
+        if (userHasWaze) {
+            Uri uriWaze = Uri.parse("https://waze.com/ul?q=" + Uri.encode(locationName) + "&navigate=yes");
+            Intent intentWaze = new Intent(Intent.ACTION_VIEW, uriWaze);
+            intentWaze.setPackage("com.waze");
+
+            String title = " ";
+            Intent chooserIntent = Intent.createChooser(intentGoogleNav, title);
+            Intent[] arr = new Intent[1];
+            arr[0] = intentWaze;
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arr);
+            context.startActivity(chooserIntent);
+        } else {
+            context.startActivity(intentGoogleNav);
+        }
+    }
+
     public static void startShowLocationActivity(Context context, double latitude, double longitude) {
         startShowLocationActivity(context, String.valueOf(latitude), String.valueOf(longitude), "");
     }
