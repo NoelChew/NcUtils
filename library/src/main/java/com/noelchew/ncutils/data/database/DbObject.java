@@ -3,6 +3,7 @@ package com.noelchew.ncutils.data.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -175,7 +176,9 @@ public abstract class DbObject<T> {
     }
 
     public boolean save() {
-        setUuid(UUID.randomUUID().toString());
+        if (TextUtils.isEmpty(uuid)) {
+            setUuid(UUID.randomUUID().toString());
+        }
         String json = toJson();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbObjectConstants.COLUMN_UUID, getUuid());

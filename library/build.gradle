@@ -4,14 +4,14 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.noelchew'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.2'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
-        versionCode 28
-        versionName "0.1.28"
+        targetSdkVersion 27
+        versionCode 29
+        versionName "0.1.29"
     }
     buildTypes {
         release {

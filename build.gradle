@@ -30,5 +30,5 @@ task clean(type: Delete) {
 }
 
 ext {
-    googleVersion = '26.0.2'
+    googleVersion = '27.0.2'
 }
