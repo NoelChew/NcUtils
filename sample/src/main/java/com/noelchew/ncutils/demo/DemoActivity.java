@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -22,7 +23,6 @@ import com.noelchew.ncutils.alert.ToastUtil;
 import com.noelchew.ncutils.demo.adapter.DummyAdapter;
 import com.noelchew.ncutils.demo.data.DummyData;
 import com.noelchew.ncutils.demo.model.DummyObject;
-import com.noelchew.ncutils.device.NetworkUtil;
 import com.noelchew.ncutils.ui.PixelUtil;
 
 import java.util.ArrayList;
@@ -159,7 +159,7 @@ public class DemoActivity extends NcBaseActivity {
 
         onRefreshListener.onRefresh();
 
-        NetworkUtil.openWifiSettings(context);
+//        NetworkUtil.openWifiSettings(context);
     }
 
     @Override
@@ -175,7 +175,17 @@ public class DemoActivity extends NcBaseActivity {
     private RecyclerArrayAdapter.OnItemClickListener onItemClickListener = new RecyclerArrayAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(int position) {
+            final DummyObject dummyObject = adapter.getItem(position);
             ToastUtil.toastShortMessage(context, "onClicked: " + adapter.getItem(position).getName());
+
+            // how to get DbObject from SQLite DB using UUID:
+            String uuid = dummyObject.getUuid();
+            DummyObject tmp = dummyObject.get(uuid);
+            if (tmp != null) {
+                Log.d(TAG, tmp.toJson());
+            } else {
+                Log.e(TAG, "null");
+            }
         }
     };
 

@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteConstraintException;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -58,11 +57,12 @@ public abstract class DbObject<T> {
                 String json = cursor.getString(indexJson);
                 long timestamp = cursor.getLong(indexTimestamp);
 
-                T object = new Gson().fromJson(json, new TypeToken<T>() {
-                }.getType());
+//                DbObject<T> object = new Gson().fromJson(json, new TypeToken<DbObject<T>>() {
+//                }.getType());
 
-                ((DbObject) object).setUuid(uuid);
-                ((DbObject) object).setTimestamp(timestamp);
+                T object = (T) new Gson().fromJson(json, this.getClass());
+                ((DbObject<T>) object).setUuid(uuid);
+                ((DbObject<T>) object).setTimestamp(timestamp);
 
                 return object;
             }
