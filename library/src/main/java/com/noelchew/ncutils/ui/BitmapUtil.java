@@ -16,7 +16,7 @@ public class BitmapUtil {
     public static Bitmap drawableResourceToBitmap(Context context, int drawableResource) {
         return BitmapFactory.decodeResource(context.getResources(), drawableResource);
     }
-    
+
     public static Bitmap drawableToBitmap (Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable)drawable).getBitmap();
