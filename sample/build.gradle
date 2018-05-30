@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.2'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.noelchew.ncutils.demo"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 31
-        versionName "0.1.31"
+        versionCode 32
+        versionName "0.1.32"
     }
     buildTypes {
         release {
@@ -20,11 +20,13 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':library')
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${rootProject.ext.googleVersion}"
-    compile 'com.joanzapata.iconify:android-iconify-material:2.2.2' // (v2.0.0)
-    compile 'com.joanzapata.iconify:android-iconify-material-community:2.2.2' // (v1.4.57)
-    compile 'com.jude:easyrecyclerview:4.2.6'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':library')
+    testImplementation 'junit:junit:4.12'
+    implementation "com.android.support:support-v4:${rootProject.ext.googleVersion}"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.googleVersion}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.googleVersion}"
+    implementation 'com.joanzapata.iconify:android-iconify-material:2.2.2' // (v2.0.0)
+    implementation 'com.joanzapata.iconify:android-iconify-material-community:2.2.2' // (v1.4.57)
+    implementation 'com.jude:easyrecyclerview:4.4.2'
 }
