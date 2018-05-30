@@ -18,6 +18,7 @@ Root level gradle:
 allprojects {
  repositories {
     jcenter()
+    google()
     maven { url "https://jitpack.io" }
  }
 }
@@ -29,7 +30,7 @@ Application level gradle:
 
 ```
 dependencies {
-    compile 'com.github.noelchew:NcUtils:x.y.z'
+    implementation 'com.github.noelchew:NcUtils:x.y.z'
 }
 ```
 Note: do not add the jitpack.io repository under buildscript
