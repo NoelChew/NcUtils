@@ -52,7 +52,7 @@ dependencies {
     implementation 'com.github.renaudcerrato:static-maps-api:1.0.4'
 }
 ```
-You can learn more about StaticMap library [here](https://github.com/renaudcerrato/static-maps-api);
+You can learn more about StaticMap library [here](https://github.com/renaudcerrato/static-maps-api).
 
 # Used by
 Please let me know at chewwengchuen [at] gmail [dot] com to add to this list.
