@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.mypopsy.maps.StaticMap;
 import com.noelchew.ncutils.R;
@@ -35,6 +36,9 @@ public class GoogleMapUtil {
     }
 
     public static String getMapImageUrl(double latitude, double longitude, int imageWidth, int imageHeight, int zoom, boolean withMarker) {
+        if (!hasStaticMapOnClasspath()) {
+            return "";
+        }
         StaticMap staticMap = new StaticMap().center(new StaticMap.GeoPoint(latitude, longitude))
                 .type(StaticMap.Type.ROADMAP)
                 .size(imageWidth, imageHeight)
@@ -148,5 +152,19 @@ public class GoogleMapUtil {
         } catch (PackageManager.NameNotFoundException e) {
             return false;
         }
+    }
+
+    private static boolean hasStaticMapOnClasspath() {
+        try {
+            Class.forName("com.mypopsy.maps.StaticMap");
+            return true;
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+            Log.e("GoogleMapUtil", "Please add StaticMap dependency to use this feature." +
+                    "\nadd this line in your app level gradle.build file:" +
+                    "\nimplementation 'com.github.renaudcerrato:static-maps-api:1.0.4'" +
+                    "\n\nVisit https://github.com/NoelChew/NcUtils and https://github.com/renaudcerrato/static-maps-api for more information.");
+        }
+        return false;
     }
 }
