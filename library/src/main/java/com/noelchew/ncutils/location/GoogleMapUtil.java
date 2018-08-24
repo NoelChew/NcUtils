@@ -160,10 +160,11 @@ public class GoogleMapUtil {
             return true;
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
-            Log.e("GoogleMapUtil", "Please add StaticMap dependency to use this feature." +
-                    "\nadd this line in your app level gradle.build file:" +
-                    "\nimplementation 'com.github.renaudcerrato:static-maps-api:1.0.4'" +
-                    "\n\nVisit https://github.com/NoelChew/NcUtils and https://github.com/renaudcerrato/static-maps-api for more information.");
+            Log.e("GoogleMapUtil", "Please add StaticMap dependency to use this GoogleMapUtil.getMapImageUrl()." +
+                    "\nadd this line in your app level build.gradle file:" +
+                    "\n\nimplementation 'com.github.renaudcerrato:static-maps-api:1.0.4'" +
+                    "\n\nVisit https://github.com/NoelChew/NcUtils and" +
+                    "\nhttps://github.com/renaudcerrato/static-maps-api for more information.");
         }
         return false;
     }
