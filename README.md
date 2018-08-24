@@ -46,6 +46,13 @@ android {
     }
 }
 ```
+If you are using [GoogleMapUtil.getMapImageUrl](https://github.com/NoelChew/NcUtils/blob/master/library/src/main/java/com/noelchew/ncutils/location/GoogleMapUtil.java) to generate static map images, please add the following dependency:
+```
+dependencies {
+    implementation 'com.github.renaudcerrato:static-maps-api:1.0.4'
+}
+```
+You can learn more about StaticMap library [here](https://github.com/renaudcerrato/static-maps-api);
 
 # Used by
 Please let me know at chewwengchuen [at] gmail [dot] com to add to this list.
