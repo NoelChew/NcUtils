@@ -24,8 +24,8 @@
     </item>
 
     <item
-        android:id="@+id/menu_dummy2"
-        android:title="dummy2"
+        android:id="@+id/menu_encryption"
+        android:title="Encryption"
         app:showAsAction="ifRoom">
     </item>
 </menu>

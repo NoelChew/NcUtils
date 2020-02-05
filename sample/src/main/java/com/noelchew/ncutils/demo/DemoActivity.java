@@ -4,13 +4,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.MaterialCommunityIcons;
@@ -80,13 +80,13 @@ public class DemoActivity extends NcBaseActivity {
                 new IconDrawable(this, MaterialCommunityIcons.mdi_plus)
                         .colorRes(android.R.color.white)
                         .actionBarSize());
-        menu.findItem(R.id.menu_dummy2).setIcon(
-                new IconDrawable(this, MaterialCommunityIcons.mdi_dots_vertical)
+        menu.findItem(R.id.menu_encryption).setIcon(
+                new IconDrawable(this, MaterialCommunityIcons.mdi_message_text)
                         .colorRes(android.R.color.white)
                         .actionBarSize());
 
         // demo: hiding of menu item
-        hideMenuItem(R.id.menu_dummy2);
+//        hideMenuItem(R.id.menu_encryption);
 
         return true;
 
@@ -113,8 +113,10 @@ public class DemoActivity extends NcBaseActivity {
                 addData();
                 break;
 
-            case R.id.menu_dummy2:
-                Toast.makeText(context, "Dummy 1", Toast.LENGTH_SHORT).show();
+            case R.id.menu_encryption:
+//                Toast.makeText(context, "Dummy 1", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, EncryptionActivity.class);
+                startActivity(intent);
                 break;
 
             default:

@@ -57,4 +57,8 @@ public class SharedPreferencesUtil {
         String serialisedMap = HashMapUtil.mapToString(hashMap);
         setString(context, key, serialisedMap);
     }
+
+    public static void remove(Context context, String key) {
+        getSharedPreferences(context).edit().remove(key).commit();
+    }
 }

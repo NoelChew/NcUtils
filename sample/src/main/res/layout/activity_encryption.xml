@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/nc_app_bar_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:id="@+id/linear_layout_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_encrypt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="Encrypt" />
+
+            <Button
+                android:id="@+id/btn_decrypt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="Decrypt" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/linear_layout_buttons"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:hint="Password"
+                android:text="hePj3rBLN69rUUa9"
+                android:inputType="text"
+                android:textSize="20dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_encrypt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:layout_weight="5"
+                android:hint="Text for Encyption"
+                android:inputType="textMultiLine"
+                android:textSize="20dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_decrypt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@+id/et_title"
+                android:layout_margin="4dp"
+                android:layout_weight="5"
+                android:hint="Encrypted Text"
+                android:inputType="textMultiLine"
+                android:textSize="20dp" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
