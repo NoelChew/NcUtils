@@ -8,14 +8,15 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.noelchew.ncutils.ui.KeyboardUtil;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.noelchew.ncutils.R;
+import com.noelchew.ncutils.ui.KeyboardUtil;
 
 public abstract class NcBaseActivity extends AppCompatActivity {
 
