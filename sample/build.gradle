@@ -7,8 +7,8 @@ android {
         applicationId "com.noelchew.ncutils.demo"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 40
-        versionName "0.1.40"
+        versionCode 41
+        versionName "0.1.41"
     }
     buildTypes {
         release {
