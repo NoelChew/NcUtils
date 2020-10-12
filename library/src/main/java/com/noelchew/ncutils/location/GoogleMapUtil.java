@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.mypopsy.maps.StaticMap;
 import com.noelchew.ncutils.R;
 
 import java.io.UnsupportedEncodingException;
@@ -22,32 +23,32 @@ public class GoogleMapUtil {
     private static int DEFAULT_ZOOM = 14;
     private static boolean DEFAULT_WITH_MARKER = true;
 
-//    public static String getMapImageUrl(String latitude, String longitude) {
-//        return getMapImageUrl(Double.parseDouble(latitude), Double.parseDouble(longitude), DEFAULT_IMAGE_WIDTH, DEFAULT_IMAGE_HEIGHT, DEFAULT_ZOOM, DEFAULT_WITH_MARKER);
-//    }
-//
-//    public static String getMapImageUrl(String latitude, String longitude, int imageWidth, int imageHeight, int zoom, boolean withMarker) {
-//        return getMapImageUrl(Double.parseDouble(latitude), Double.parseDouble(longitude), imageWidth, imageHeight, zoom, withMarker);
-//    }
-//
-//    public static String getMapImageUrl(double latitude, double longitude) {
-//        return getMapImageUrl(latitude, longitude, DEFAULT_IMAGE_WIDTH, DEFAULT_IMAGE_HEIGHT, DEFAULT_ZOOM, DEFAULT_WITH_MARKER);
-//    }
-//
-//    public static String getMapImageUrl(double latitude, double longitude, int imageWidth, int imageHeight, int zoom, boolean withMarker) {
-//        if (!hasStaticMapOnClasspath()) {
-//            return "";
-//        }
-//        StaticMap staticMap = new StaticMap().center(new StaticMap.GeoPoint(latitude, longitude))
-//                .type(StaticMap.Type.ROADMAP)
-//                .size(imageWidth, imageHeight)
-//                .zoom(zoom);
-//
-//        if (withMarker) {
-//            staticMap.marker(new StaticMap.GeoPoint(latitude, longitude));
-//        }
-//        return staticMap.toString();
-//    }
+    public static String getMapImageUrl(String latitude, String longitude) {
+        return getMapImageUrl(Double.parseDouble(latitude), Double.parseDouble(longitude), DEFAULT_IMAGE_WIDTH, DEFAULT_IMAGE_HEIGHT, DEFAULT_ZOOM, DEFAULT_WITH_MARKER);
+    }
+
+    public static String getMapImageUrl(String latitude, String longitude, int imageWidth, int imageHeight, int zoom, boolean withMarker) {
+        return getMapImageUrl(Double.parseDouble(latitude), Double.parseDouble(longitude), imageWidth, imageHeight, zoom, withMarker);
+    }
+
+    public static String getMapImageUrl(double latitude, double longitude) {
+        return getMapImageUrl(latitude, longitude, DEFAULT_IMAGE_WIDTH, DEFAULT_IMAGE_HEIGHT, DEFAULT_ZOOM, DEFAULT_WITH_MARKER);
+    }
+
+    public static String getMapImageUrl(double latitude, double longitude, int imageWidth, int imageHeight, int zoom, boolean withMarker) {
+        if (!hasStaticMapOnClasspath()) {
+            return "";
+        }
+        StaticMap staticMap = new StaticMap().center(new StaticMap.GeoPoint(latitude, longitude))
+                .type(StaticMap.Type.ROADMAP)
+                .size(imageWidth, imageHeight)
+                .zoom(zoom);
+
+        if (withMarker) {
+            staticMap.marker(new StaticMap.GeoPoint(latitude, longitude));
+        }
+        return staticMap.toString();
+    }
 
     public static void startGetDirectionActivity(Context context, double latitude, double longitude) {
         startGetDirectionActivity(context, String.valueOf(latitude), String.valueOf(longitude));
