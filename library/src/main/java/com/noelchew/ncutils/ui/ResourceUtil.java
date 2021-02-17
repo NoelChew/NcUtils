@@ -1,5 +1,6 @@
 package com.noelchew.ncutils.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
+import androidx.annotation.AttrRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -62,8 +64,27 @@ public class ResourceUtil {
         return value.data;
     }
 
+    public static int getPrimaryTextColor(Context context) {
+        return getColorFromAttr(context, android.R.attr.textColorPrimary);
+    }
+
+    public static int getSecondaryTextColor(Context context) {
+        return getColorFromAttr(context, android.R.attr.textColorSecondary);
+    }
+
     public static int getColor(Context context, int colorResourceId) {
         return ContextCompat.getColor(context, colorResourceId);
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public static int getColorFromAttr(Context context, @AttrRes int attrColor) {
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(attrColor, typedValue, true);
+        if (typedValue.resourceId != 0) {
+            return ContextCompat.getColor(context, typedValue.resourceId);
+        } else {
+            return ContextCompat.getColor(context, typedValue.data);
+        }
     }
 
     public static int getScreenWidthPixel(AppCompatActivity activity) {
