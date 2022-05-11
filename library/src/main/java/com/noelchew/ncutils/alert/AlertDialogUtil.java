@@ -1,10 +1,11 @@
 package com.noelchew.ncutils.alert;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.noelchew.ncutils.R;
 import com.noelchew.ncutils.ui.ResourceUtil;
@@ -18,21 +19,21 @@ import java.util.List;
 public class AlertDialogUtil {
 
     public static void showAlertDialogMessage(Context context, String message) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(message)
                 .create()
                 .show();
     }
 
     public static void showAlertDialogMessage(Context context, int message) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(message)
                 .create()
                 .show();
     }
 
     public static void showAlertDialogMessage(Context context, String title, String message) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title)
                 .setMessage(message)
                 .create()
@@ -40,7 +41,7 @@ public class AlertDialogUtil {
     }
 
     public static void showAlertDialogMessage(Context context, int title, int message) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title)
                 .setMessage(message)
                 .create()
@@ -48,42 +49,42 @@ public class AlertDialogUtil {
     }
 
     public static void showAlertDialogMessage(Context context, String title, String message, DialogInterface.OnClickListener onClickListener) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setTitle(title)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setTitle(title)
                 .setMessage(message)
                 .setCancelable(false)
-                .setPositiveButton(R.string.ncutils_ok, onClickListener)
+                .setPositiveButton(android.R.string.ok, onClickListener)
                 .show();
 
         setAlertDialogButtonColor(alertDialog, ResourceUtil.getAccentColor(context));
     }
 
     public static void showAlertDialogMessage(Context context, int title, int message, DialogInterface.OnClickListener onClickListener) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setTitle(title)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setTitle(title)
                 .setMessage(message)
                 .setCancelable(false)
-                .setPositiveButton(R.string.ncutils_ok, onClickListener)
+                .setPositiveButton(android.R.string.ok, onClickListener)
                 .show();
 
         setAlertDialogButtonColor(alertDialog, ResourceUtil.getAccentColor(context));
     }
 
     public static void showAlertDialogMessage(Context context, String message, DialogInterface.OnClickListener onClickListener) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setMessage(message)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setMessage(message)
                 .setCancelable(false)
-                .setPositiveButton(R.string.ncutils_ok, onClickListener)
+                .setPositiveButton(android.R.string.ok, onClickListener)
                 .show();
 
         setAlertDialogButtonColor(alertDialog, ResourceUtil.getAccentColor(context));
     }
 
     public static void showAlertDialogMessage(Context context, int message, DialogInterface.OnClickListener onClickListener) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setMessage(message)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setMessage(message)
                 .setCancelable(false)
-                .setPositiveButton(R.string.ncutils_ok, onClickListener)
+                .setPositiveButton(android.R.string.ok, onClickListener)
                 .show();
 
         setAlertDialogButtonColor(alertDialog, ResourceUtil.getAccentColor(context));
@@ -96,8 +97,8 @@ public class AlertDialogUtil {
         editText.setText(prefill);
         editText.setInputType(inputType);
 
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setTitle(title)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setTitle(title)
                 .setMessage(message)
                 .setView(dialogView)
                 .setCancelable(false)
@@ -107,7 +108,7 @@ public class AlertDialogUtil {
                         inputCallback.onInput(dialog, ((EditText) dialogView.findViewById(R.id.edit_text)).getText());
                     }
                 })
-                .setNegativeButton(R.string.ncutils_cancel, null)
+                .setNegativeButton(android.R.string.cancel, null)
                 .show();
 
         setAlertDialogButtonColor(alertDialog, ResourceUtil.getAccentColor(context));
@@ -120,8 +121,8 @@ public class AlertDialogUtil {
         editText.setText(prefill);
         editText.setInputType(inputType);
 
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setTitle(title)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setTitle(title)
                 .setMessage(message)
                 .setView(dialogView)
                 .setCancelable(false)
@@ -149,7 +150,7 @@ public class AlertDialogUtil {
 
         final CharSequence[] selections = tmpSelections;
 
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title)
                 .setItems(selections, onClickListener)
                 .create()
@@ -165,15 +166,15 @@ public class AlertDialogUtil {
 
         final CharSequence[] selections = tmpSelections;
 
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setItems(selections, onClickListener)
                 .create()
                 .show();
     }
 
     public static void showYesNoDialog(Context context, String title, String message, DialogInterface.OnClickListener positiveListener) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setTitle(title)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setTitle(title)
                 .setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(R.string.ncutils_yes, positiveListener)
@@ -184,8 +185,8 @@ public class AlertDialogUtil {
     }
 
     public static void showYesNoDialog(Context context, int title, int message, int positiveButtonText, int negativeButtonText, DialogInterface.OnClickListener positiveListener, DialogInterface.OnClickListener negativeListener) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setTitle(title)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setTitle(title)
                 .setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(positiveButtonText, positiveListener)
@@ -196,8 +197,8 @@ public class AlertDialogUtil {
     }
 
     public static void showYesNoDialog(Context context, String title, String message, String positiveButtonText, String negativeButtonText, DialogInterface.OnClickListener positiveListener, DialogInterface.OnClickListener negativeListener) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setTitle(title)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setTitle(title)
                 .setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(positiveButtonText, positiveListener)
@@ -209,8 +210,8 @@ public class AlertDialogUtil {
 
 
     public static void showYesNoDialog(Context context, int title, int positiveButtonText, int negativeButtonText, DialogInterface.OnClickListener positiveListener, DialogInterface.OnClickListener negativeListener) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setTitle(title)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setTitle(title)
                 .setCancelable(false)
                 .setPositiveButton(positiveButtonText, positiveListener)
                 .setNegativeButton(negativeButtonText, negativeListener)
@@ -220,8 +221,8 @@ public class AlertDialogUtil {
     }
 
     public static void showYesNoDialog(Context context, String title, String positiveButtonText, String negativeButtonText, DialogInterface.OnClickListener positiveListener, DialogInterface.OnClickListener negativeListener) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setTitle(title)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setTitle(title)
                 .setCancelable(false)
                 .setPositiveButton(positiveButtonText, positiveListener)
                 .setNegativeButton(negativeButtonText, negativeListener)
@@ -231,8 +232,8 @@ public class AlertDialogUtil {
     }
 
     public static void showYesNoNeutralDialog(Context context, String title, String positiveButtonText, String negativeButtonText, String neutralButtonText, DialogInterface.OnClickListener positiveListener, DialogInterface.OnClickListener negativeListener, DialogInterface.OnClickListener neutralListener) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        android.app.AlertDialog alertDialog = builder.setTitle(title)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog alertDialog = builder.setTitle(title)
                 .setCancelable(false)
                 .setPositiveButton(positiveButtonText, positiveListener)
                 // this swap between negative and neutral button is intentional

@@ -2,6 +2,8 @@ package com.noelchew.ncutils.device;
 
 import android.content.Context;
 
+import androidx.annotation.Nullable;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,6 +32,24 @@ public class DeviceIdUtil {
         return sID;
     }
 
+    public synchronized static @Nullable String getExistingDeviceId(Context context) {
+        if (sID == null) {
+            File installation = new File(context.getFilesDir(), INSTALLATION);
+            try {
+                if (installation.exists()) {
+                    sID = readInstallationFile(installation);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return sID;
+    }
+
+    public static String generateRandomUUID() {
+        return UUID.randomUUID().toString();
+    }
+
     private static String readInstallationFile(File installation) throws IOException {
         RandomAccessFile f = new RandomAccessFile(installation, "r");
         byte[] bytes = new byte[(int) f.length()];
@@ -40,7 +60,7 @@ public class DeviceIdUtil {
 
     private static void writeInstallationFile(File installation) throws IOException {
         FileOutputStream out = new FileOutputStream(installation);
-        String id = UUID.randomUUID().toString();
+        String id = generateRandomUUID();
         out.write(id.getBytes());
         out.close();
     }
